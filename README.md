@@ -85,4 +85,6 @@ To view reports, open report.html in your browser.
 |     Count Total Addresses   |   Checks if the total number of addresses is greater than 0.     |[Person].[Address] |
 |     Unique Cities Count   |	Verifies that there are unique city values in the table.        |[Person].[Address] |
 |     Max Document Level | Ensures the max document level is within the expected range. |[Production].[Document]|
-
+| Count of Documents by Owner |	Ensures each owner has at least one document. |[Production].[Document]|
+|Min & Max UnitMeasure Length| Verifies that min and max UnitMeasure names exist. |[Production].[UnitMeasure]|
+|Check for Specific UnitMeasure Values |Checks if values like 'Each', 'Gallon', or 'Meter' exist.| [Production].[UnitMeasure]|
