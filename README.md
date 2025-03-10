@@ -78,3 +78,10 @@ After execution, reports will be stored in the results/ directory:
 
 To view reports, open report.html in your browser.
 
+## Test Cases
+
+| Test Case | 	Description |	Table |
+| ------ | ------ |------ |
+|     Count Total Addresses   |   Checks if the total number of addresses is greater than 0.     |[Person].[Address] |
+|        |        |
+
