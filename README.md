@@ -72,9 +72,9 @@ _powershell_
 
 After execution, reports will be stored in the results/ directory:
 
-output.xml – Execution details in XML format.
-log.html – Detailed logs of each test case.
-report.html – Summary of all test results.
+- output.xml – Execution details in XML format.
+- log.html – Detailed logs of each test case.
+- report.html – Summary of all test results.
 
 To view reports, open report.html in your browser.
 
