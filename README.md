@@ -83,5 +83,6 @@ To view reports, open report.html in your browser.
 | Test Case | 	Description |	Table |
 | ------ | ------ |------ |
 |     Count Total Addresses   |   Checks if the total number of addresses is greater than 0.     |[Person].[Address] |
-|        |        |
+|     Unique Cities Count   |	Verifies that there are unique city values in the table.        |[Person].[Address] |
+|     Max Document Level | Ensures the max document level is within the expected range. |[Production].[Document]|
 
