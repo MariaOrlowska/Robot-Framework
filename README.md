@@ -88,3 +88,23 @@ To view reports, open report.html in your browser.
 | Count of Documents by Owner |	Ensures each owner has at least one document. |[Production].[Document]|
 |Min & Max UnitMeasure Length| Verifies that min and max UnitMeasure names exist. |[Production].[UnitMeasure]|
 |Check for Specific UnitMeasure Values |Checks if values like 'Each', 'Gallon', or 'Meter' exist.| [Production].[UnitMeasure]|
+
+
+## Troubleshooting
+
+Common issues and solutions:
+
+1. Database connection errors – Ensure:
+
+- SQL Server is running.
+- Credentials in `db_connection.robot` are correct.
+- The correct driver (`SQL Server` or `ODBC Driver 17 for SQL Server`) is installed.
+- The firewall allows SQL Server connections.
+
+2. Permission denied – The user may not have access to the database. Grant permissions with:
+
+_sql_
+
+`ALTER ROLE db_datareader ADD MEMBER myuser;`
+
+3. Tests failing unexpectedly – Check the logs in `results/log.html` for details.
