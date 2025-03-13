@@ -17,12 +17,28 @@ _sh_
 or install manually:
 _sh_
 
-`pip install robotframework robotframework-databaselibrary pyodbc`
+`pip install robotframework robotframework-databaselibrary pymssql`
 
 2. Configure SQL Server
 
 - Make sure you have an MS SQL Server running.
-- Create a user with the correct permissions (Guide).
+- Create a user with the correct permissions
+  ``` 
+      -- Create the login
+  
+      CREATE LOGIN login_name WITH PASSWORD = 'pass123';
+  
+      -- Create the user in a specific database
+  
+      USE AdventureWorks2012;
+      CREATE USER user_name FOR LOGIN login_name;
+
+      -- Assign roles
+  
+      ALTER ROLE db_datareader ADD MEMBER user_name;
+      ALTER ROLE db_datawriter ADD MEMBER user_name;```
+
+        
 - Restart MS SQL Server after user creation.
 - Enable TCP/IP connections in SQL Server Configuration Manager.
 
@@ -36,7 +52,8 @@ ${DB_USER}   myuser
 ${DB_PASS}   mypassword
 ${DB_HOST}   localhost
 ${DB_PORT}   1433
-${DB_CONN}   Driver={SQL Server};Server=${DB_HOST};Database=${DB_NAME};UID=${DB_USER};PWD=${DB_PASS}
+${DB_DRIVER}  ODBC Driver 18 for SQL Server
+
 ```
 ## Running the Tests
 
@@ -98,7 +115,7 @@ Common issues and solutions:
 
 - SQL Server is running.
 - Credentials in `db_connection.robot` are correct.
-- The correct driver (`SQL Server` or `ODBC Driver 17 for SQL Server`) is installed.
+- The correct driver (`SQL Server` or `ODBC Driver 18 for SQL Server`) is installed.
 - The firewall allows SQL Server connections.
 
 2. Permission denied – The user may not have access to the database. Grant permissions with:

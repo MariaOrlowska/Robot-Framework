@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.1 on win32)" generated="2025-03-13T12:12:45.298466" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\maria_orlowska\PycharmProjects\robot-framework-task\tests">
+<suite id="s1-s1" name="Test Address" source="C:\Users\maria_orlowska\PycharmProjects\robot-framework-task\tests\test_address.robot">
+<test id="s1-s1-t1" name="Count Total Addresses" line="7">
+<kw name="Connect To DB" owner="db_connection">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.343236" level="INFO">${DB_CONN} = DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=Framework123;PORT=1433;Encrypt=no;TrustServerCertificate=yes</msg>
+<var>${DB_CONN}</var>
+<arg>DRIVER=${DB_DRIVER};SERVER=${DBHost};DATABASE=${DBName};UID=${DBUser};PWD=${DBPass};PORT=${DBPort};Encrypt=no;TrustServerCertificate=yes</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.343011" elapsed="0.000254"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.343485" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-13T12:12:45.343550" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-13T12:12:45.352877" level="INFO">Connect to DB using : pymssql.connect(database='DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=***, port=1433, charset='UTF-8')</msg>
+<arg>pymssql</arg>
+<arg>${DB_CONN}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.343344" elapsed="0.064532"/>
+</kw>
+<status status="PASS" start="2025-03-13T12:12:45.342661" elapsed="0.065338"/>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.408438" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;USE AdventureWorks2012; SELECT COUNT(*) FROM [Person].[Address];&lt;/code&gt;</msg>
+<msg time="2025-03-13T12:12:45.411095" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-13T12:12:45.411825" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;19614&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-03-13T12:12:45.411927" level="INFO">${count} = [(19614,)]</msg>
+<var>${count}</var>
+<arg>USE AdventureWorks2012; SELECT COUNT(*) FROM [Person].[Address];</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.408304" elapsed="0.003639"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.412652" level="INFO">Total addresses: 19614</msg>
+<arg>Total addresses: ${count[0][0]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.412196" elapsed="0.000499"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${count[0][0]} &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.412921" elapsed="0.000316"/>
+</kw>
+<kw name="Disconnect From DB" owner="db_connection">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.413702" elapsed="0.000166"/>
+</kw>
+<status status="PASS" start="2025-03-13T12:12:45.413549" elapsed="0.000363"/>
+</kw>
+<doc>Verify the total number of addresses is greater than 0.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.342032" elapsed="0.072348"/>
+</test>
+<test id="s1-s1-t2" name="Unique Cities Count" line="15">
+<kw name="Connect To DB" owner="db_connection">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.416197" level="INFO">${DB_CONN} = DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=Framework123;PORT=1433;Encrypt=no;TrustServerCertificate=yes</msg>
+<var>${DB_CONN}</var>
+<arg>DRIVER=${DB_DRIVER};SERVER=${DBHost};DATABASE=${DBName};UID=${DBUser};PWD=${DBPass};PORT=${DBPort};Encrypt=no;TrustServerCertificate=yes</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.415962" elapsed="0.000261"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.416426" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-13T12:12:45.416529" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-13T12:12:45.416640" level="INFO">Connect to DB using : pymssql.connect(database='DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=***, port=1433, charset='UTF-8')</msg>
+<arg>pymssql</arg>
+<arg>${DB_CONN}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.416297" elapsed="0.014179"/>
+</kw>
+<status status="PASS" start="2025-03-13T12:12:45.415721" elapsed="0.014958"/>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.431188" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;USE AdventureWorks2012; SELECT COUNT(DISTINCT City) FROM [Person].[Address];&lt;/code&gt;</msg>
+<msg time="2025-03-13T12:12:45.438862" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-13T12:12:45.439394" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;575&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-03-13T12:12:45.439502" level="INFO">${count} = [(575,)]</msg>
+<var>${count}</var>
+<arg>USE AdventureWorks2012; SELECT COUNT(DISTINCT City) FROM [Person].[Address];</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.431011" elapsed="0.008508"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.440373" level="INFO">Unique cities count: 575</msg>
+<arg>Unique cities count: ${count[0][0]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.440022" elapsed="0.000381"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${count[0][0]} &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.440695" elapsed="0.000323"/>
+</kw>
+<kw name="Disconnect From DB" owner="db_connection">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.441462" elapsed="0.000165"/>
+</kw>
+<status status="PASS" start="2025-03-13T12:12:45.441318" elapsed="0.000352"/>
+</kw>
+<doc>Verify that the count of distinct cities is a positive number.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.415128" elapsed="0.026689"/>
+</test>
+<doc>Tests for [Person].[Address] table</doc>
+<status status="PASS" start="2025-03-13T12:12:45.323476" elapsed="0.119282"/>
+</suite>
+<suite id="s1-s2" name="Test Document" source="C:\Users\maria_orlowska\PycharmProjects\robot-framework-task\tests\test_document.robot">
+<test id="s1-s2-t1" name="Max Document Level" line="7">
+<kw name="Connect To DB" owner="db_connection">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.447155" level="INFO">${DB_CONN} = DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=Framework123;PORT=1433;Encrypt=no;TrustServerCertificate=yes</msg>
+<var>${DB_CONN}</var>
+<arg>DRIVER=${DB_DRIVER};SERVER=${DBHost};DATABASE=${DBName};UID=${DBUser};PWD=${DBPass};PORT=${DBPort};Encrypt=no;TrustServerCertificate=yes</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.447001" elapsed="0.000173"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.447379" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-13T12:12:45.447456" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-13T12:12:45.447699" level="INFO">Connect to DB using : pymssql.connect(database='DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=***, port=1433, charset='UTF-8')</msg>
+<arg>pymssql</arg>
+<arg>${DB_CONN}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.447240" elapsed="0.016121"/>
+</kw>
+<status status="PASS" start="2025-03-13T12:12:45.446846" elapsed="0.016605"/>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.463921" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;USE AdventureWorks2012;SELECT MAX(DocumentLevel) FROM [Production].[Document];&lt;/code&gt;</msg>
+<msg time="2025-03-13T12:12:45.468514" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-13T12:12:45.469329" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-03-13T12:12:45.469449" level="INFO">${max_level} = [(2,)]</msg>
+<var>${max_level}</var>
+<arg>USE AdventureWorks2012;SELECT MAX(DocumentLevel) FROM [Production].[Document];</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.463811" elapsed="0.005654"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.470138" level="INFO">Max document level: 2</msg>
+<arg>Max document level: ${max_level[0][0]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.469806" elapsed="0.000364"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${max_level[0][0]} &gt;= 0 and ${max_level[0][0]} &lt;= 2</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.470448" elapsed="0.000604"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.471307" elapsed="0.000155"/>
+</kw>
+<doc>Verify that the maximum document level is within an expected range.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.446357" elapsed="0.025361"/>
+</test>
+<test id="s1-s2-t2" name="Count of Documents by Owner" line="15">
+<kw name="Connect To DB" owner="db_connection">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.473145" level="INFO">${DB_CONN} = DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=Framework123;PORT=1433;Encrypt=no;TrustServerCertificate=yes</msg>
+<var>${DB_CONN}</var>
+<arg>DRIVER=${DB_DRIVER};SERVER=${DBHost};DATABASE=${DBName};UID=${DBUser};PWD=${DBPass};PORT=${DBPort};Encrypt=no;TrustServerCertificate=yes</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.472976" elapsed="0.000187"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.473336" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-13T12:12:45.473423" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-13T12:12:45.473518" level="INFO">Connect to DB using : pymssql.connect(database='DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=***, port=1433, charset='UTF-8')</msg>
+<arg>pymssql</arg>
+<arg>${DB_CONN}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.473225" elapsed="0.018696"/>
+</kw>
+<status status="PASS" start="2025-03-13T12:12:45.472812" elapsed="0.019202"/>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.492400" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;USE AdventureWorks2012; SELECT Owner, COUNT(*) FROM [Production].[Document] GROUP BY Owner;&lt;/code&gt;</msg>
+<msg time="2025-03-13T12:12:45.495391" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-13T12:12:45.496131" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 3 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Owner&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;217&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;219&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;4&lt;/td&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;220&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;5&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-03-13T12:12:45.496390" level="INFO">${owners} = [(217, 4), (219, 4), (220, 5)]</msg>
+<var>${owners}</var>
+<arg>USE AdventureWorks2012; SELECT Owner, COUNT(*) FROM [Production].[Document] GROUP BY Owner;</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.492289" elapsed="0.004124"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.496794" level="INFO">Owners and their document count: [(217, 4), (219, 4), (220, 5)]</msg>
+<arg>Owners and their document count: ${owners}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.496609" elapsed="0.000228"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${row[1]} &gt;= 1</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.497247" elapsed="0.000817"/>
+</kw>
+<var name="${row}">(217, 4)</var>
+<status status="PASS" start="2025-03-13T12:12:45.497187" elapsed="0.000906"/>
+</iter>
+<iter>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${row[1]} &gt;= 1</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.498249" elapsed="0.000624"/>
+</kw>
+<var name="${row}">(219, 4)</var>
+<status status="PASS" start="2025-03-13T12:12:45.498172" elapsed="0.000728"/>
+</iter>
+<iter>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${row[1]} &gt;= 1</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.499005" elapsed="0.000484"/>
+</kw>
+<var name="${row}">(220, 5)</var>
+<status status="PASS" start="2025-03-13T12:12:45.498958" elapsed="0.000560"/>
+</iter>
+<var>${row}</var>
+<value>@{owners}</value>
+<status status="PASS" start="2025-03-13T12:12:45.497053" elapsed="0.002488"/>
+</for>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.499810" elapsed="0.000203"/>
+</kw>
+<doc>Verify each document owner has at least one document.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.472427" elapsed="0.027814"/>
+</test>
+<doc>Tests for [Production].[Document] table</doc>
+<status status="PASS" start="2025-03-13T12:12:45.443659" elapsed="0.057478"/>
+</suite>
+<suite id="s1-s3" name="Test Unitmeasure" source="C:\Users\maria_orlowska\PycharmProjects\robot-framework-task\tests\test_unitmeasure.robot">
+<test id="s1-s3-t1" name="Min &amp; Max UnitMeasure Length" line="7">
+<kw name="Connect To DB" owner="db_connection">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.505966" level="INFO">${DB_CONN} = DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=Framework123;PORT=1433;Encrypt=no;TrustServerCertificate=yes</msg>
+<var>${DB_CONN}</var>
+<arg>DRIVER=${DB_DRIVER};SERVER=${DBHost};DATABASE=${DBName};UID=${DBUser};PWD=${DBPass};PORT=${DBPort};Encrypt=no;TrustServerCertificate=yes</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.505780" elapsed="0.000209"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.506193" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-13T12:12:45.506270" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-13T12:12:45.506368" level="INFO">Connect to DB using : pymssql.connect(database='DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=***, port=1433, charset='UTF-8')</msg>
+<arg>pymssql</arg>
+<arg>${DB_CONN}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.506072" elapsed="0.014343"/>
+</kw>
+<status status="PASS" start="2025-03-13T12:12:45.505557" elapsed="0.014983"/>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.520973" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;USE AdventureWorks2012; SELECT MIN(Name), MAX(Name) FROM [Production].[UnitMeasure];&lt;/code&gt;</msg>
+<msg time="2025-03-13T12:12:45.522735" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-13T12:12:45.523394" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Bottle&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;US pound&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-03-13T12:12:45.523499" level="INFO">${min_max} = [('Bottle', 'US pound')]</msg>
+<var>${min_max}</var>
+<arg>USE AdventureWorks2012; SELECT MIN(Name), MAX(Name) FROM [Production].[UnitMeasure];</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.520859" elapsed="0.002658"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.524303" level="INFO">Min: Bottle, Max: US pound</msg>
+<arg>Min: ${min_max[0][0]}, Max: ${min_max[0][1]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.523825" elapsed="0.000507"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.524896" level="INFO">Length is 6.</msg>
+<arg>${min_max[0][0]}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.524624" elapsed="0.000299"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.525431" level="INFO">Length is 8.</msg>
+<arg>${min_max[0][1]}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.525177" elapsed="0.000281"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.525716" elapsed="0.000155"/>
+</kw>
+<doc>Verify that min and max UnitMeasure names exist.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.504950" elapsed="0.021121"/>
+</test>
+<test id="s1-s3-t2" name="Check for Specific UnitMeasure Values" line="16">
+<kw name="Connect To DB" owner="db_connection">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.527712" level="INFO">${DB_CONN} = DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=Framework123;PORT=1433;Encrypt=no;TrustServerCertificate=yes</msg>
+<var>${DB_CONN}</var>
+<arg>DRIVER=${DB_DRIVER};SERVER=${DBHost};DATABASE=${DBName};UID=${DBUser};PWD=${DBPass};PORT=${DBPort};Encrypt=no;TrustServerCertificate=yes</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.527474" elapsed="0.000271"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.528006" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-13T12:12:45.528122" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-13T12:12:45.528269" level="INFO">Connect to DB using : pymssql.connect(database='DRIVER=ODBC Driver 18 for SQL Server;SERVER=EPPLWARW0394LOCALDB;DATABASE=AdventureWorks2012;UID=Kruszyna;PWD=***, port=1433, charset='UTF-8')</msg>
+<arg>pymssql</arg>
+<arg>${DB_CONN}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.527839" elapsed="0.015217"/>
+</kw>
+<status status="PASS" start="2025-03-13T12:12:45.527230" elapsed="0.015923"/>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-03-13T12:12:45.543608" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;USE AdventureWorks2012; SELECT Name FROM [Production].[UnitMeasure] WHERE Name IN ('Each', 'Gallon', 'Meter');&lt;/code&gt;</msg>
+<msg time="2025-03-13T12:12:45.544755" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-13T12:12:45.545542" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 3 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Name&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Each&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Gallon&lt;/td&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Meter&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-03-13T12:12:45.545648" level="INFO">${result} = [('Each',), ('Gallon',), ('Meter',)]</msg>
+<var>${result}</var>
+<arg>USE AdventureWorks2012; SELECT Name FROM [Production].[UnitMeasure] WHERE Name IN ('Each', 'Gallon', 'Meter');</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.543494" elapsed="0.002170"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.546044" level="INFO">Found UnitMeasures: [('Each',), ('Gallon',), ('Meter',)]</msg>
+<arg>Found UnitMeasures: ${result}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.545929" elapsed="0.000147"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-03-13T12:12:45.546469" level="INFO">Length is 3.</msg>
+<arg>${result}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.546378" elapsed="0.000122"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.546776" elapsed="0.000177"/>
+</kw>
+<doc>Verify that at least one of the expected UnitMeasure values exists.</doc>
+<status status="PASS" start="2025-03-13T12:12:45.526762" elapsed="0.020364"/>
+</test>
+<doc>Tests for [Production].[UnitMeasure] table</doc>
+<status status="PASS" start="2025-03-13T12:12:45.502103" elapsed="0.045992"/>
+</suite>
+<status status="PASS" start="2025-03-13T12:12:45.300301" elapsed="0.248851"/>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="6" fail="0" skip="0">Tests</stat>
+<stat name="Test Address" id="s1-s1" pass="2" fail="0" skip="0">Tests.Test Address</stat>
+<stat name="Test Document" id="s1-s2" pass="2" fail="0" skip="0">Tests.Test Document</stat>
+<stat name="Test Unitmeasure" id="s1-s3" pass="2" fail="0" skip="0">Tests.Test Unitmeasure</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
