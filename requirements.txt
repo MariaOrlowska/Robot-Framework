@@ -1,4 +1,4 @@
-pymssql                         == 2.3.2
+pyodbc                          == 5.2.0
 robotframework                  == 7.2.2
 robotframework-assertion-engine == 3.0.3
 robotframework-databaselibrary  == 2.1.3
