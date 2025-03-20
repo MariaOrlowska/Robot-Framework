@@ -54,7 +54,7 @@ ${DB_HOST}   localhost
 ${DB_PORT}   1433
 ${DB_DRIVER}  ODBC Driver 18 for SQL Server
 
-Connect To Database    pyodbc    AdventureWorks2012     Kruszyna   Framework123    EPPLWARW0394\\LOCALDB   1433    None    driver={ODBC Driver 17 for SQL Server}
+
 
 ```
 ## Running the Tests
